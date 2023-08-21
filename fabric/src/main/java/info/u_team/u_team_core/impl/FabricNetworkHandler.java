@@ -50,9 +50,9 @@ public class FabricNetworkHandler implements NetworkHandler {
 		
 		EnvironmentUtil.runWhen(Environment.CLIENT, () -> () -> Client.registerLoginReceiver(this, channel));
 		ServerLoginNetworking.registerGlobalReceiver(channel, (server, packetListener, understood, buffer, synchronizer, responseSender) -> {
-			if (!understood) {
-				buffer = PacketByteBufs.create().writeUtf(NOT_ON_CLIENT);
-			}
+			// if (!understood) {
+			// 	  buffer = PacketByteBufs.create().writeUtf(NOT_ON_CLIENT);
+			// }
 			acceptProtocolVersion(buffer, serverAcceptedVersions, packetListener::disconnect);
 		});
 		ServerLoginConnectionEvents.QUERY_START.register((packetListener, server, sender, synchronizer) -> {
